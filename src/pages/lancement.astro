@@ -1,8 +1,10 @@
 ---
 // Page de lancement pour NOVI, la gamme d'enceinte portable (produit distinct de PULP).
-// Photo produit attendue dans public/assets/produit/novi-enceinte.jpg (voir .novi-visual ci-dessous) :
-// tant que le fichier n'est pas ajouté, le dégradé métallique sert de repli visuel.
+// Photo produit générée via Higgsfield (src/assets/produit/novi-enceinte.png) — visuel de
+// travail à remplacer par une vraie photo produit avant mise en production.
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import noviEnceinte from '@/assets/produit/novi-enceinte.png';
 
 const categories = ['Enceintes', 'Accessoires', 'Éditions limitées'];
 ---
@@ -34,8 +36,14 @@ const categories = ['Enceintes', 'Accessoires', 'Éditions limitées'];
       <div class="novi-side-col">
         <p class="novi-tagline">Puissance<br />&amp; liberté</p>
 
-        <div class="novi-visual" role="img" aria-label="Enceinte portable NOVI, habillage tissu et calotte chromée">
-          <div class="novi-visual-mesh"></div>
+        <div class="novi-visual">
+          <Image
+            src={noviEnceinte}
+            alt="Enceinte portable NOVI, habillage tissu et calotte chromée"
+            width={720}
+            height={960}
+            class="novi-visual-img"
+          />
         </div>
 
         <span class="novi-scroll">(défiler)</span>
@@ -160,22 +168,15 @@ const categories = ['Enceintes', 'Accessoires', 'Éditions limitées'];
     overflow: hidden;
     border-radius: 0.5rem;
     transform: rotate(4deg);
-    background-image:
-      url('/assets/produit/novi-enceinte.jpg'),
-      linear-gradient(155deg, #e8e8ea 0%, #8f8f96 35%, #46464c 55%, #d4d4d8 75%, #6b6b70 100%);
-    background-size: cover;
-    background-position: center;
+    background: #f4f4f5;
     box-shadow: 0 20px 40px -15px rgb(0 0 0 / 0.35);
   }
 
-  .novi-visual-mesh {
-    position: absolute;
-    inset: 12% 15%;
-    border-radius: 50%;
-    background-image: radial-gradient(circle, rgb(0 0 0 / 0.35) 1.5px, transparent 1.5px);
-    background-size: 10px 10px;
-    opacity: 0.6;
-    mix-blend-mode: multiply;
+  .novi-visual :global(.novi-visual-img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
   .novi-scroll {
