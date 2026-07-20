@@ -1,0 +1,23 @@
+---
+interface Spec {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  specs: Spec[];
+}
+
+const { specs } = Astro.props;
+---
+
+<dl class="grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
+  {
+    specs.map((spec) => (
+      <div class="border-border flex justify-between gap-4 border-b py-3 sm:justify-start">
+        <dt class="text-muted text-sm font-medium">{spec.label}</dt>
+        <dd class="text-ink text-sm font-semibold sm:ml-auto">{spec.value}</dd>
+      </div>
+    ))
+  }
+</dl>

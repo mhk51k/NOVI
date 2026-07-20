@@ -1,0 +1,16 @@
+/* TODO: remplacer par la charte graphique PULP (couleurs, typographies, espacements) */
+:root {
+  --color-brand: #18181b;
+  --color-brand-light: #3f3f46;
+  --color-brand-dark: #09090b;
+  --color-accent: #52525b;
+
+  --color-ink: #18181b;
+  --color-surface: #ffffff;
+  --color-muted: #71717a;
+  --color-border: #e4e4e7;
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --radius-brand: 0.75rem;
+  --container-max: 80rem;
+}

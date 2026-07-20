@@ -1,0 +1,37 @@
+---
+const rating = '4.8';
+const reviewCount = '1 200+';
+
+const testimonials = [
+  { name: 'Claire, 34 ans', profile: 'Active pressée', quote: 'Je le prends au bureau, mon smoothie est prêt avant que le café ne coule.', stars: 5 },
+  { name: 'Marc, 58 ans', profile: 'Soucieux de sa santé', quote: "Facile à utiliser, facile à laver. Exactement ce qu'il me fallait.", stars: 5 },
+  { name: 'Léa, 21 ans', profile: 'Étudiante', quote: 'Tient dans mon sac de sport, autonomie au top.', stars: 4 },
+  { name: 'La famille Dubois', profile: 'Famille', quote: 'Les enfants adorent préparer leurs propres jus, en toute sécurité.', stars: 5 },
+];
+---
+
+<section id="avis" class="bg-surface py-16 lg:py-24">
+  <div class="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-ink text-3xl font-bold tracking-tight sm:text-4xl">Ils utilisent PULP au quotidien</h2>
+      <p class="text-muted mt-3">Note moyenne {rating}/5 sur {reviewCount} avis</p>
+    </div>
+    <div class="mt-12 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 lg:grid lg:grid-cols-4 lg:overflow-visible">
+      {
+        testimonials.map((t) => (
+          <figure class="reveal border-border bg-surface w-[80%] flex-shrink-0 snap-center rounded-brand border p-6 lg:w-auto">
+            <div class="text-brand flex gap-0.5" aria-hidden="true">
+              {Array.from({ length: t.stars }).map(() => (
+                <span>★</span>
+              ))}
+            </div>
+            <blockquote class="text-ink mt-3 text-sm">"{t.quote}"</blockquote>
+            <figcaption class="text-muted mt-4 text-xs">
+              <span class="text-ink font-semibold">{t.name}</span> — {t.profile}
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>

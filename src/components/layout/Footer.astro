@@ -1,0 +1,48 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="border-border bg-surface border-t">
+  <div class="mx-auto grid max-w-container gap-10 px-4 py-12 sm:px-6 lg:grid-cols-4 lg:px-8">
+    <div>
+      <span
+        class="border-border text-muted flex h-10 w-28 items-center justify-center rounded-brand border border-dashed text-sm font-semibold"
+      >
+        LOGO PULP
+      </span>
+      <p class="text-muted mt-4 max-w-xs text-sm">
+        Le mixeur portable qui te suit partout, pour des boissons fraîches en toutes circonstances.
+      </p>
+    </div>
+
+    <div>
+      <h3 class="text-ink text-sm font-semibold">Navigation</h3>
+      <ul class="text-muted mt-4 space-y-2 text-sm">
+        <li><a href="/produit" class="hover:text-brand">Produit</a></li>
+        <li><a href="/a-propos" class="hover:text-brand">À propos</a></li>
+        <li><a href="/contact" class="hover:text-brand">Contact</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="text-ink text-sm font-semibold">Aide</h3>
+      <ul class="text-muted mt-4 space-y-2 text-sm">
+        <li><a href="/#faq" class="hover:text-brand">FAQ</a></li>
+        <li><a href="/panier" class="hover:text-brand">Panier</a></li>
+        <li><a href="mailto:contact@pulp.example" class="hover:text-brand">contact@pulp.example</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="text-ink text-sm font-semibold">Suivez-nous</h3>
+      <div class="mt-4 flex gap-3">
+        <a href="#" aria-label="Instagram" class="border-border hover:bg-muted/10 flex h-11 w-11 items-center justify-center rounded-brand border">IG</a>
+        <a href="#" aria-label="TikTok" class="border-border hover:bg-muted/10 flex h-11 w-11 items-center justify-center rounded-brand border">TT</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-border text-muted border-t px-4 py-6 text-center text-xs sm:px-6 lg:px-8">
+    © {year} PULP. Tous droits réservés.
+  </div>
+</footer>

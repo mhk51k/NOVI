@@ -1,0 +1,231 @@
+---
+// Page de lancement pour NOVI, la gamme d'enceinte portable (produit distinct de PULP).
+// Photo produit attendue dans public/assets/produit/novi-enceinte.jpg (voir .novi-visual ci-dessous) :
+// tant que le fichier n'est pas ajouté, le dégradé métallique sert de repli visuel.
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const categories = ['Enceintes', 'Accessoires', 'Éditions limitées'];
+---
+
+<BaseLayout
+  title="NOVI — Lancement"
+  description="NOVI, l'enceinte portable Bluetooth sans fil : autonomie longue durée, son puissant et habillage tissu résistant."
+>
+  <section class="novi-hero">
+    <div class="novi-topbar">
+      <span class="novi-logo" aria-hidden="true">
+        N<span class="novi-logo-o">O</span>V<span class="novi-logo-i">I</span>
+      </span>
+      <span class="novi-meta">PARIS · 2026</span>
+    </div>
+
+    <div class="novi-grid">
+      <div class="novi-headline-col">
+        <h1 class="novi-headline">
+          <span>Sans</span>
+          <span>Fil</span>
+        </h1>
+        <p class="novi-copy">
+          NOVI tient dans une main, se glisse dans un sac et diffuse un son puissant en Bluetooth
+          du réveil à la dernière chanson du soir. Câble AUX et câble de charge inclus.
+        </p>
+      </div>
+
+      <div class="novi-side-col">
+        <p class="novi-tagline">Puissance<br />&amp; liberté</p>
+
+        <div class="novi-visual" role="img" aria-label="Enceinte portable NOVI, habillage tissu et calotte chromée">
+          <div class="novi-visual-mesh"></div>
+        </div>
+
+        <span class="novi-scroll">(défiler)</span>
+      </div>
+    </div>
+  </section>
+
+  <nav class="novi-categories" aria-label="Catégories de produits">
+    {
+      categories.map((label, i) => (
+        <a href="/produit" class="novi-category-row" style={`--i:${i}`}>
+          {label}
+        </a>
+      ))
+    }
+    <span class="novi-badge">Paiement sécurisé</span>
+  </nav>
+</BaseLayout>
+
+<style>
+  .novi-hero {
+    /* Palette locale à cette page de campagne — n'affecte pas les tokens PULP globaux. */
+    --novi-ink: #0a0a0a;
+    --novi-bg: #ffffff;
+    --novi-accent: #7cff3c;
+    --novi-blue: #2563eb;
+    --novi-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+    background: var(--novi-bg);
+    color: var(--novi-ink);
+    padding: 1.5rem clamp(1.25rem, 4vw, 3rem) 3rem;
+  }
+
+  .novi-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: clamp(2rem, 6vw, 4rem);
+  }
+
+  .novi-logo {
+    display: inline-flex;
+    align-items: center;
+    font-family: system-ui, sans-serif;
+    font-weight: 800;
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+  }
+
+  .novi-logo-o {
+    display: inline-block;
+    width: 0.85em;
+    height: 0.85em;
+    margin: 0 0.02em;
+    border: 0.14em solid currentColor;
+    border-radius: 50%;
+  }
+
+  .novi-logo-i {
+    color: var(--novi-blue);
+  }
+
+  .novi-meta {
+    font-family: var(--novi-mono);
+    font-size: 0.8125rem;
+    letter-spacing: 0.05em;
+  }
+
+  .novi-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2rem, 6vw, 3rem);
+  }
+
+  @media (min-width: 900px) {
+    .novi-grid {
+      grid-template-columns: 1.5fr 1fr;
+      align-items: start;
+    }
+  }
+
+  .novi-headline {
+    font-family: 'Arial Black', system-ui, sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 0.85;
+    letter-spacing: -0.02em;
+    font-size: clamp(4rem, 13vw, 9rem);
+    margin: 0 0 1.5rem;
+  }
+
+  .novi-headline span {
+    display: block;
+  }
+
+  .novi-copy {
+    max-width: 32ch;
+    font-size: 1.0625rem;
+    line-height: 1.5;
+    color: var(--novi-ink);
+  }
+
+  .novi-side-col {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    gap: 1.25rem;
+  }
+
+  .novi-tagline {
+    font-size: 1.375rem;
+    line-height: 1.25;
+    font-weight: 400;
+  }
+
+  .novi-visual {
+    width: min(100%, 18rem);
+    aspect-ratio: 3 / 4;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    transform: rotate(4deg);
+    background-image:
+      url('/assets/produit/novi-enceinte.jpg'),
+      linear-gradient(155deg, #e8e8ea 0%, #8f8f96 35%, #46464c 55%, #d4d4d8 75%, #6b6b70 100%);
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 20px 40px -15px rgb(0 0 0 / 0.35);
+  }
+
+  .novi-visual-mesh {
+    position: absolute;
+    inset: 12% 15%;
+    border-radius: 50%;
+    background-image: radial-gradient(circle, rgb(0 0 0 / 0.35) 1.5px, transparent 1.5px);
+    background-size: 10px 10px;
+    opacity: 0.6;
+    mix-blend-mode: multiply;
+  }
+
+  .novi-scroll {
+    font-family: var(--novi-mono);
+    font-size: 1.125rem;
+    color: var(--novi-accent);
+    background: #000;
+    padding: 0.25rem 0.75rem;
+    margin-top: -1.5rem;
+  }
+
+  .novi-categories {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--novi-ink, #0a0a0a);
+  }
+
+  .novi-category-row {
+    position: relative;
+    display: block;
+    padding: clamp(1rem, 4vw, 1.75rem) clamp(1.25rem, 4vw, 3rem);
+    font-family: system-ui, sans-serif;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 400;
+    line-height: 1;
+    text-decoration: none;
+    color: inherit;
+    border-bottom: 1px solid #d4d4d8;
+    background: #fff;
+    transition: background-color 0.2s ease;
+  }
+
+  .novi-category-row:nth-child(odd) {
+    background: #f4f4f5;
+  }
+
+  .novi-category-row:hover {
+    background: #e4e4e7;
+  }
+
+  .novi-badge {
+    position: absolute;
+    right: clamp(1rem, 4vw, 2rem);
+    bottom: 1.25rem;
+    background: #000;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+  }
+</style>

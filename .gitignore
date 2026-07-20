@@ -1,0 +1,22 @@
+# build
+dist/
+.astro/
+.vercel/
+
+# dependencies
+node_modules/
+
+# env
+.env
+.env.production
+
+# editor / os
+.DS_Store
+Thumbs.db
+
+# claude code (local/personal settings, not shared)
+.claude/settings.local.json
+
+# logs
+npm-debug.log*
+pnpm-debug.log*

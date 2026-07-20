@@ -1,0 +1,34 @@
+---
+const faqs = [
+  { q: 'Combien de temps dure la batterie ?', a: "Jusqu'à 15 mixages avec une charge complète (environ 2h en USB-C)." },
+  {
+    q: 'Comment nettoyer le mixeur ?',
+    a: "Ajoute de l'eau et une goutte de savon, lance un cycle de 20 secondes, rince. Les pièces amovibles passent aussi au lave-vaisselle.",
+  },
+  { q: 'Quelle est la garantie ?', a: "PULP est garanti 2 ans pièces et main d'œuvre." },
+  { q: 'Sous combien de temps suis-je livré ?', a: 'Entre 3 et 5 jours ouvrés en France métropolitaine.' },
+  { q: 'Le mixeur est-il bruyant ?', a: 'Non, PULP est conçu pour un usage silencieux, adapté au bureau comme à la maison.' },
+  { q: 'Est-il sûr pour les enfants ?', a: "Les lames sont protégées et le moteur s'arrête automatiquement si le couvercle n'est pas verrouillé." },
+];
+---
+
+<section id="faq" class="bg-surface py-16 lg:py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <h2 class="text-ink text-center text-3xl font-bold tracking-tight sm:text-4xl">Questions fréquentes</h2>
+    <div class="divide-border border-border mt-10 divide-y border-t">
+      {
+        faqs.map((faq) => (
+          <details class="group py-5">
+            <summary class="text-ink flex cursor-pointer list-none items-center justify-between gap-4 text-left font-semibold marker:content-none">
+              {faq.q}
+              <span class="text-muted text-xl transition-transform group-open:rotate-45" aria-hidden="true">
+                +
+              </span>
+            </summary>
+            <p class="text-muted mt-3 text-sm">{faq.a}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>

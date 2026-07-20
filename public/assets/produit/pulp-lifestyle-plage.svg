@@ -1,0 +1,10 @@
+<!-- TODO: remplacer par une vraie photo lifestyle -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 533">
+  <rect width="400" height="533" fill="#f4f4f5" />
+  <rect y="380" width="400" height="153" fill="#d4d4d8" />
+  <circle cx="320" cy="90" r="34" fill="#e4e4e7" />
+  <rect x="180" y="240" width="40" height="140" rx="14" fill="#a1a1aa" />
+  <text x="200" y="500" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#52525b">
+    Plage
+  </text>
+</svg>

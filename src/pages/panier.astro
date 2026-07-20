@@ -1,0 +1,13 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import CartList from '@/components/cart/CartDrawer.svelte';
+---
+
+<BaseLayout title="Panier" description="Ton panier PULP.">
+  <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+    <h1 class="text-ink text-3xl font-bold tracking-tight">Ton panier</h1>
+    <div class="mt-8">
+      <CartList client:load />
+    </div>
+  </section>
+</BaseLayout>

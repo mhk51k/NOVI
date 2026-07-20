@@ -1,0 +1,51 @@
+---
+import { getEntry } from 'astro:content';
+import ProductLayout from '@/layouts/ProductLayout.astro';
+import ProductGallery from '@/components/product/ProductGallery.astro';
+import SpecsTable from '@/components/product/SpecsTable.astro';
+import VariantPicker from '@/components/product/VariantPicker.svelte';
+import Faq from '@/components/home/Faq.astro';
+import { formatPrice } from '@/lib/formatPrice';
+
+const entry = await getEntry('products', 'mixeur-pulp');
+if (!entry) throw new Error('Produit introuvable : mixeur-pulp');
+const product = entry.data;
+---
+
+<ProductLayout product={product}>
+  <section class="mx-auto max-w-container px-4 py-12 sm:px-6 lg:px-8 lg:py-20">
+    <div class="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
+      <ProductGallery images={product.images} />
+
+      <div class="flex flex-col gap-6">
+        <div>
+          <h1 class="text-ink text-3xl font-bold tracking-tight sm:text-4xl">{product.title}</h1>
+          <p class="text-muted mt-2 text-lg">{product.shortDescription}</p>
+        </div>
+
+        <p class="text-ink text-3xl font-bold">{formatPrice(product.price, product.currency)}</p>
+
+        <!-- client:load : c'est l'action d'achat principale, toujours au-dessus de la ligne de flottaison -->
+        <VariantPicker
+          client:load
+          title={product.title}
+          sku={product.sku}
+          price={product.price}
+          image={product.images[0].src}
+          variants={product.colorVariants}
+        />
+
+        <p class="border-border text-muted border-t pt-6 text-sm leading-relaxed">{product.description}</p>
+      </div>
+    </div>
+
+    <div class="border-border mt-16 border-t pt-12 lg:mt-24">
+      <h2 class="text-ink text-2xl font-bold tracking-tight">Caractéristiques techniques</h2>
+      <div class="mt-8">
+        <SpecsTable specs={product.specs} />
+      </div>
+    </div>
+  </section>
+
+  <Faq />
+</ProductLayout>

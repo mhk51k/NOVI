@@ -1,0 +1,31 @@
+{
+  "title": "Mixeur PULP",
+  "slug": "mixeur-pulp",
+  "shortDescription": "Le mixeur portable qui te suit partout.",
+  "description": "PULP est un mixeur nomade, sans fil et rechargeable, pensé pour préparer un smoothie frais en quelques secondes, où que tu sois : à la maison, au sport, au bureau ou en voyage. Simple à utiliser, facile à laver, et assez compact pour tenir dans un sac.",
+  "price": 59.9,
+  "currency": "EUR",
+  "images": [
+    { "src": "/assets/produit/pulp-hero.svg", "alt": "Mixeur portable PULP, visuel placeholder" },
+    { "src": "/assets/produit/pulp-angle-2.svg", "alt": "Mixeur portable PULP, vue de profil, visuel placeholder" },
+    { "src": "/assets/produit/pulp-angle-3.svg", "alt": "Mixeur portable PULP ouvert, visuel placeholder" }
+  ],
+  "colorVariants": [
+    { "name": "Noir Graphite", "hex": "#18181b", "sku": "PULP-BLK", "stock": 42 },
+    { "name": "Gris Galet", "hex": "#a1a1aa", "sku": "PULP-GRY", "stock": 31 },
+    { "name": "Blanc Craie", "hex": "#f4f4f5", "sku": "PULP-WHT", "stock": 18 }
+  ],
+  "specs": [
+    { "label": "Autonomie", "value": "Jusqu'à 15 mixages par charge" },
+    { "label": "Puissance", "value": "Moteur 20 000 tr/min" },
+    { "label": "Capacité", "value": "400 ml" },
+    { "label": "Charge", "value": "USB-C, 2h pour une charge complète" },
+    { "label": "Lavage", "value": "Auto-nettoyage à l'eau savonneuse en 20s" },
+    { "label": "Étanchéité", "value": "Résistant aux éclaboussures (IPX6)" },
+    { "label": "Poids", "value": "420 g" },
+    { "label": "Matériaux", "value": "Tritan sans BPA, inox alimentaire" }
+  ],
+  "stock": 91,
+  "sku": "PULP-MIX-01",
+  "featured": true
+}

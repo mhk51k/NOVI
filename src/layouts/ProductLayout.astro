@@ -1,0 +1,30 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+interface Props {
+  product: CollectionEntry<'products'>['data'];
+}
+
+const { product } = Astro.props;
+
+const jsonLd = {
+  '@context': 'https://schema.org/',
+  '@type': 'Product',
+  name: product.title,
+  description: product.shortDescription,
+  sku: product.sku,
+  image: product.images.map((i) => i.src),
+  offers: {
+    '@type': 'Offer',
+    priceCurrency: product.currency,
+    price: product.price,
+    availability: product.stock > 0 ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+  },
+};
+---
+
+<BaseLayout title={product.title} description={product.shortDescription} image={product.images[0]?.src}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
+  <slot />
+</BaseLayout>

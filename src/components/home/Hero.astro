@@ -1,0 +1,54 @@
+---
+import Button from '@/components/ui/Button.astro';
+---
+
+<section class="bg-surface relative overflow-hidden">
+  <div class="mx-auto grid max-w-container items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-28">
+    <div class="flex flex-col gap-6 text-center lg:text-left">
+      <span class="border-border text-muted mx-auto inline-flex w-fit items-center rounded-full border px-4 py-1.5 text-xs font-medium lg:mx-0">
+        Nouveau — précommande ouverte
+      </span>
+      <h1 class="text-ink text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+        Ton smoothie, où que tu sois
+      </h1>
+      <p class="text-muted mx-auto max-w-md text-lg lg:mx-0">
+        PULP est le mixeur portable et rechargeable qui prépare un smoothie frais en 30 secondes, à la maison comme en
+        déplacement.
+      </p>
+      <div class="mx-auto flex flex-col gap-3 sm:flex-row lg:mx-0">
+        <Button href="/produit" size="lg">Acheter maintenant</Button>
+        <Button href="#comment-ca-marche" variant="secondary" size="lg">Comment ça marche</Button>
+      </div>
+      <p class="text-muted text-sm">Livraison offerte dès 40€ · Garantie 2 ans · Paiement sécurisé</p>
+    </div>
+
+    <div class="relative mx-auto aspect-square w-full max-w-md">
+      <img
+        data-hero-image
+        src="/assets/produit/pulp-hero.svg"
+        alt="Mixeur portable PULP, visuel produit"
+        class="h-full w-full object-contain"
+        width="600"
+        height="600"
+        loading="eager"
+      />
+    </div>
+  </div>
+</section>
+
+<script>
+  const heroImage = document.querySelector<HTMLElement>('[data-hero-image]');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
+
+  if (heroImage && !prefersReducedMotion && isDesktop) {
+    window.addEventListener(
+      'scroll',
+      () => {
+        const offset = Math.min(window.scrollY * 0.08, 40);
+        heroImage.style.transform = `translateY(${offset}px)`;
+      },
+      { passive: true },
+    );
+  }
+</script>

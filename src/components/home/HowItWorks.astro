@@ -1,0 +1,30 @@
+---
+const steps = [
+  { number: '01', title: 'Remplis', description: 'Ajoute tes fruits, un liquide et de la glace si tu veux.' },
+  { number: '02', title: 'Visse', description: 'Ferme le couvercle, PULP est prêt en un clic.' },
+  { number: '03', title: 'Appuie', description: 'Un bouton, un mixage puissant en 20 secondes.' },
+  { number: '04', title: 'Déguste', description: "Bois directement dans la bouteille, où que tu sois." },
+];
+---
+
+<section id="comment-ca-marche" class="bg-surface py-16 lg:py-24">
+  <div class="mx-auto max-w-container px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-ink text-3xl font-bold tracking-tight sm:text-4xl">Comment ça marche</h2>
+      <p class="text-muted mt-3">Quatre étapes, trente secondes, zéro prise de tête.</p>
+    </div>
+    <div class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        steps.map((step) => (
+          <div class="reveal flex flex-col items-center gap-3 text-center">
+            <span class="bg-ink flex h-14 w-14 items-center justify-center rounded-full text-lg font-semibold text-white">
+              {step.number}
+            </span>
+            <h3 class="text-ink text-lg font-semibold">{step.title}</h3>
+            <p class="text-muted text-sm">{step.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
