@@ -1,17 +1,14 @@
 ---
+import Logo from '@/components/ui/Logo.astro';
 const year = new Date().getFullYear();
 ---
 
 <footer class="border-border bg-surface border-t">
   <div class="mx-auto grid max-w-container gap-10 px-4 py-12 sm:px-6 lg:grid-cols-4 lg:px-8">
     <div>
-      <span
-        class="border-border text-muted flex h-10 w-28 items-center justify-center rounded-brand border border-dashed text-sm font-semibold"
-      >
-        LOGO PULP
-      </span>
+      <Logo class="text-2xl" />
       <p class="text-muted mt-4 max-w-xs text-sm">
-        Le mixeur portable qui te suit partout, pour des boissons fraîches en toutes circonstances.
+        L'enceinte portable qui t'accompagne partout, pour un son puissant en toutes circonstances.
       </p>
     </div>
 
@@ -29,7 +26,7 @@ const year = new Date().getFullYear();
       <ul class="text-muted mt-4 space-y-2 text-sm">
         <li><a href="/#faq" class="hover:text-brand">FAQ</a></li>
         <li><a href="/panier" class="hover:text-brand">Panier</a></li>
-        <li><a href="mailto:contact@pulp.example" class="hover:text-brand">contact@pulp.example</a></li>
+        <li><a href="mailto:contact@novi.example" class="hover:text-brand">contact@novi.example</a></li>
       </ul>
     </div>
 
@@ -43,6 +40,6 @@ const year = new Date().getFullYear();
   </div>
 
   <div class="border-border text-muted border-t px-4 py-6 text-center text-xs sm:px-6 lg:px-8">
-    © {year} PULP. Tous droits réservés.
+    © {year} NOVI. Tous droits réservés.
   </div>
 </footer>

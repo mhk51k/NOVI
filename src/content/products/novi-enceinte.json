@@ -1,0 +1,34 @@
+{
+  "title": "Enceinte NOVI",
+  "slug": "novi-enceinte",
+  "shortDescription": "L'enceinte portable qui t'accompagne partout.",
+  "description": "NOVI est une enceinte portable Bluetooth pensée pour suivre chaque instant : à la maison, en balade, à la plage ou entre amis. Habillage tissu résistant, son puissant et autonomie longue durée, dans un format qui se glisse partout.",
+  "price": 79.9,
+  "currency": "EUR",
+  "images": [
+    { "src": "/assets/produit/novi-1.png", "alt": "Enceinte portable NOVI, coloris Noir Onyx, vue trois quarts" },
+    { "src": "/assets/produit/novi-2.png", "alt": "Enceinte portable NOVI, coloris Noir Onyx, vue de face" },
+    { "src": "/assets/produit/novi-blue.png", "alt": "Enceinte portable NOVI, coloris Bleu Novi" },
+    { "src": "/assets/produit/novi-red.png", "alt": "Enceinte portable NOVI, coloris Rouge Brique" },
+    { "src": "/assets/produit/novi-camo.png", "alt": "Enceinte portable NOVI, coloris Camouflage" }
+  ],
+  "colorVariants": [
+    { "name": "Noir Onyx", "hex": "#0a0a0a", "sku": "NOVI-BLK", "stock": 54 },
+    { "name": "Bleu Novi", "hex": "#1e3a5f", "sku": "NOVI-BLU", "stock": 27 },
+    { "name": "Rouge Brique", "hex": "#7f1d2b", "sku": "NOVI-RED", "stock": 22 },
+    { "name": "Camouflage", "hex": "#5b6b45", "sku": "NOVI-CAMO", "stock": 15 }
+  ],
+  "specs": [
+    { "label": "Autonomie", "value": "Jusqu'à 20h d'écoute à volume modéré" },
+    { "label": "Puissance sonore", "value": "Haut-parleur 20W, basses renforcées par radiateur passif" },
+    { "label": "Connectivité", "value": "Bluetooth 5.3, portée 15 m" },
+    { "label": "Charge", "value": "USB-C, 2h30 pour une charge complète" },
+    { "label": "Étanchéité", "value": "Résistant à l'eau et à la poussière (IPX7)" },
+    { "label": "Entrée audio", "value": "Prise jack 3,5 mm, câble AUX inclus" },
+    { "label": "Poids", "value": "540 g" },
+    { "label": "Matériaux", "value": "Habillage tissu résistant, coques renforcées" }
+  ],
+  "stock": 100,
+  "sku": "NOVI-SPK-01",
+  "featured": true
+}

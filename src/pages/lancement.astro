@@ -1,23 +1,22 @@
 ---
-// Page de lancement pour NOVI, la gamme d'enceinte portable (produit distinct de PULP).
+// Page de lancement pour NOVI, la gamme d'enceinte portable.
 // Photo produit générée via Higgsfield (src/assets/produit/novi-enceinte.png) — visuel de
 // travail à remplacer par une vraie photo produit avant mise en production.
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
+import Logo from '@/components/ui/Logo.astro';
 import noviEnceinte from '@/assets/produit/novi-enceinte.png';
 
 const categories = ['Enceintes', 'Accessoires', 'Éditions limitées'];
 ---
 
 <BaseLayout
-  title="NOVI — Lancement"
+  title="Lancement"
   description="NOVI, l'enceinte portable Bluetooth sans fil : autonomie longue durée, son puissant et habillage tissu résistant."
 >
   <section class="novi-hero">
     <div class="novi-topbar">
-      <span class="novi-logo" aria-hidden="true">
-        N<span class="novi-logo-o">O</span>V<span class="novi-logo-i">I</span>
-      </span>
+      <span class="novi-logo-size"><Logo /></span>
       <span class="novi-meta">PARIS · 2026</span>
     </div>
 
@@ -39,9 +38,9 @@ const categories = ['Enceintes', 'Accessoires', 'Éditions limitées'];
         <div class="novi-visual">
           <Image
             src={noviEnceinte}
-            alt="Enceinte portable NOVI, habillage tissu et calotte chromée"
-            width={720}
-            height={960}
+            alt="Enceinte portable NOVI, habillage tissu, format allongé façon JBL"
+            width={800}
+            height={600}
             class="novi-visual-img"
           />
         </div>
@@ -65,11 +64,10 @@ const categories = ['Enceintes', 'Accessoires', 'Éditions limitées'];
 
 <style>
   .novi-hero {
-    /* Palette locale à cette page de campagne — n'affecte pas les tokens PULP globaux. */
+    /* Palette locale à cette page de campagne (noir/blanc/vert) — distincte des tokens globaux du site. */
     --novi-ink: #0a0a0a;
     --novi-bg: #ffffff;
     --novi-accent: #7cff3c;
-    --novi-blue: #2563eb;
     --novi-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
 
     background: var(--novi-bg);
@@ -84,26 +82,8 @@ const categories = ['Enceintes', 'Accessoires', 'Éditions limitées'];
     margin-bottom: clamp(2rem, 6vw, 4rem);
   }
 
-  .novi-logo {
-    display: inline-flex;
-    align-items: center;
-    font-family: system-ui, sans-serif;
-    font-weight: 800;
+  .novi-logo-size {
     font-size: 1.25rem;
-    letter-spacing: -0.02em;
-  }
-
-  .novi-logo-o {
-    display: inline-block;
-    width: 0.85em;
-    height: 0.85em;
-    margin: 0 0.02em;
-    border: 0.14em solid currentColor;
-    border-radius: 50%;
-  }
-
-  .novi-logo-i {
-    color: var(--novi-blue);
   }
 
   .novi-meta {
@@ -162,8 +142,8 @@ const categories = ['Enceintes', 'Accessoires', 'Éditions limitées'];
   }
 
   .novi-visual {
-    width: min(100%, 18rem);
-    aspect-ratio: 3 / 4;
+    width: min(100%, 26rem);
+    aspect-ratio: 4 / 3;
     position: relative;
     overflow: hidden;
     border-radius: 0.5rem;
@@ -228,5 +208,13 @@ const categories = ['Enceintes', 'Accessoires', 'Éditions limitées'];
     font-weight: 600;
     padding: 0.4rem 0.9rem;
     border-radius: 999px;
+  }
+
+  @media (max-width: 640px) {
+    /* Le texte de la dernière catégorie peut passer sur deux lignes : on réserve de la place
+       sous le texte pour que le badge ne le chevauche pas. */
+    .novi-category-row:last-of-type {
+      padding-bottom: 4.5rem;
+    }
   }
 </style>

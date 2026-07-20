@@ -1,8 +1,8 @@
-/* TODO: remplacer par la charte graphique PULP (couleurs, typographies, espacements) */
+/* Charte NOVI : bleu de marque tiré du logo (patch "I"). À ajuster si une charte plus complète est fournie. */
 :root {
-  --color-brand: #18181b;
-  --color-brand-light: #3f3f46;
-  --color-brand-dark: #09090b;
+  --color-brand: #2563eb;
+  --color-brand-light: #3b82f6;
+  --color-brand-dark: #1d4ed8;
   --color-accent: #52525b;
 
   --color-ink: #18181b;

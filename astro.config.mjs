@@ -7,7 +7,7 @@ import vercel from '@astrojs/vercel/serverless';
 
 // Site déployé sur Vercel par défaut (adaptateur SSR pour le futur endpoint /api/checkout).
 export default defineConfig({
-  site: 'https://pulp-blender.example',
+  site: 'https://novi-audio.example',
   output: 'hybrid',
   adapter: vercel(),
   integrations: [tailwind({ applyBaseStyles: false }), svelte(), sitemap()],

@@ -1,0 +1,8 @@
+<!-- TODO: remplacer par une vraie photo lifestyle -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 533">
+  <rect width="400" height="533" fill="#e4e4e7" />
+  <rect x="120" y="250" width="160" height="55" rx="27" fill="#a1a1aa" />
+  <text x="200" y="500" text-anchor="middle" font-family="system-ui, sans-serif" font-size="18" font-weight="600" fill="#52525b">
+    Sport
+  </text>
+</svg>

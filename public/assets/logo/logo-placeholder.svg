@@ -1,7 +1,0 @@
-<!-- TODO: remplacer par le vrai logo PULP -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 48">
-  <rect x="1" y="1" width="158" height="46" rx="10" fill="none" stroke="#a1a1aa" stroke-width="2" stroke-dasharray="6 6" />
-  <text x="80" y="29" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#71717a">
-    LOGO PULP
-  </text>
-</svg>

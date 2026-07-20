@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        // TODO: remplacer par la charte graphique PULP — placeholders neutres gris/noir
+        // Charte NOVI — bleu de marque tiré du logo, cf. src/styles/tokens.css
         brand: {
           DEFAULT: 'var(--color-brand)',
           light: 'var(--color-brand-light)',

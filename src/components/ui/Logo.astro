@@ -1,0 +1,37 @@
+---
+// Wordmark NOVI recréé en CSS (pas de fichier logo source disponible) — à remplacer par le
+// fichier officiel (SVG/PNG) dans public/assets/logo/ dès qu'il est fourni.
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<span class={`novi-logo ${className}`}>
+  N<span class="novi-logo-o">O</span>V<span class="novi-logo-i">I</span>
+</span>
+
+<style>
+  .novi-logo {
+    display: inline-flex;
+    align-items: center;
+    font-family: system-ui, sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .novi-logo-o {
+    display: inline-block;
+    width: 0.85em;
+    height: 0.85em;
+    margin: 0 0.02em;
+    border: 0.14em solid currentColor;
+    border-radius: 50%;
+  }
+
+  .novi-logo-i {
+    color: #2563eb;
+  }
+</style>

@@ -14,7 +14,7 @@
       href="/produit"
       class="bg-brand mt-4 inline-flex min-h-[44px] items-center justify-center rounded-brand px-6 py-3 text-sm font-medium text-white"
     >
-      Découvrir PULP
+      Découvrir NOVI
     </a>
   </div>
 {:else}

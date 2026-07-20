@@ -9,7 +9,7 @@ export interface CartItem {
   image: string;
 }
 
-export const cartItems = persistentAtom<CartItem[]>('pulp-cart', [], {
+export const cartItems = persistentAtom<CartItem[]>('novi-cart', [], {
   encode: JSON.stringify,
   decode: JSON.parse,
 });
