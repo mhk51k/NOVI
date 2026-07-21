@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initVariantPickers();
   initQuantityPickers();
   initCartLineActions();
+  initBundleSelectors();
 });
 
 function initMobileNav() {
@@ -108,6 +109,7 @@ function initVariantPickers() {
         if (idInput) idInput.value = variant.id;
         if (legend) legend.textContent = variant.title;
         if (priceEl) priceEl.textContent = variant.price_formatted;
+        window.dispatchEvent(new CustomEvent('novi:variant-changed', { detail: { variant } }));
       });
     });
   });
@@ -127,6 +129,82 @@ function initQuantityPickers() {
         input.value = parseInt(input.value || '1', 10) + 1;
       }),
     );
+  });
+}
+
+// Sélecteur de bundle (Solo / Duo / Trio) : pilote la quantité réelle du formulaire et
+// affiche un total/prix-unitaire recalculés côté client. La vraie remise (palier "Trio")
+// est une remise automatique Shopify côté serveur — l'affichage ici ne fait que la
+// refléter, il ne l'invente pas (le pourcentage et le seuil viennent des réglages de
+// section, à garder synchronisés avec la remise automatique configurée dans l'admin).
+function initBundleSelectors() {
+  document.querySelectorAll('[data-bundle-selector]').forEach((root) => {
+    const tiers = Array.from(root.querySelectorAll('[data-bundle-tier]'));
+    if (tiers.length === 0) return;
+
+    const form = root.closest('form');
+    const quantityInput = form?.querySelector('[data-bundle-quantity-input]');
+    const totalEl = document.querySelector('[data-bundle-total]');
+    const perUnitEl = document.querySelector('[data-bundle-per-unit]');
+    const currency = root.dataset.currency || 'EUR';
+    const discountQty = Number(root.dataset.discountQty || 3);
+    const discountFactor = Number(root.dataset.discountFactor || 1);
+
+    const formatMoney = (cents) => {
+      try {
+        return new Intl.NumberFormat('fr-FR', { style: 'currency', currency }).format(cents / 100);
+      } catch {
+        return `${(cents / 100).toFixed(2)} ${currency}`;
+      }
+    };
+
+    const getUnitPriceCents = () => {
+      const variantJson = document.querySelector('[data-variant-json]');
+      const idInput = form?.querySelector('[name="id"]');
+      if (variantJson && idInput) {
+        try {
+          const variants = JSON.parse(variantJson.textContent);
+          const variant = variants.find((v) => String(v.id) === String(idInput.value));
+          if (variant) return variant.price_cents;
+        } catch {
+          // fallback ci-dessous
+        }
+      }
+      return Number(root.dataset.basePriceCents || 0);
+    };
+
+    const updateDisplay = (qty) => {
+      const unit = getUnitPriceCents();
+      const factor = qty >= discountQty ? discountFactor : 1;
+      const total = Math.round(unit * qty * factor);
+
+      tiers.forEach((tier) => {
+        const tierQty = Number(tier.dataset.qty);
+        const tierFactor = tierQty >= discountQty ? discountFactor : 1;
+        const priceEl = tier.querySelector('[data-bundle-tier-price]');
+        if (priceEl) priceEl.textContent = formatMoney(Math.round(unit * tierQty * tierFactor));
+      });
+
+      if (totalEl) totalEl.textContent = formatMoney(total);
+      if (perUnitEl) perUnitEl.textContent = `${formatMoney(Math.round(total / qty))} / unité`;
+      if (quantityInput) quantityInput.value = String(qty);
+    };
+
+    tiers.forEach((tier) => {
+      tier.addEventListener('click', () => {
+        tiers.forEach((t) => t.classList.remove('is-selected'));
+        tier.classList.add('is-selected');
+        updateDisplay(Number(tier.dataset.qty));
+      });
+    });
+
+    window.addEventListener('novi:variant-changed', () => {
+      const active = tiers.find((t) => t.classList.contains('is-selected')) || tiers[0];
+      updateDisplay(Number(active.dataset.qty));
+    });
+
+    const initial = tiers.find((t) => t.classList.contains('is-selected')) || tiers[0];
+    updateDisplay(Number(initial.dataset.qty));
   });
 }
 

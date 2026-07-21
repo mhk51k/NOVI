@@ -1,9 +1,15 @@
 {% assign current_variant = product.selected_or_first_available_variant %}
+{% assign bundle_discount_qty = section.settings.bundle_discount_quantity | default: 3 %}
+{% assign bundle_discount_pct = section.settings.bundle_discount_percent | default: 15 %}
+{% assign bundle_discount_factor = 100 | minus: bundle_discount_pct | divided_by: 100.0 %}
 
 <section class="product">
   <div class="container product__grid">
     <div class="product-gallery" data-product-gallery>
       <div class="product-gallery__main">
+        {% if section.settings.badge_text != blank %}
+          <span class="product-gallery__badge">{{ section.settings.badge_text }}</span>
+        {% endif %}
         <img
           data-gallery-main
           src="{{ product.featured_image | image_url: width: 900 }}"
@@ -30,19 +36,21 @@
     </div>
 
     <div class="product-info">
+      {% if section.settings.rating_value != blank %}
+        <div class="product-rating">
+          <span class="product-rating__stars" aria-hidden="true">
+            {% for i in (1..5) %}★{% endfor %}
+          </span>
+          <span>{{ section.settings.rating_value }}/5 · {{ section.settings.rating_count }} avis</span>
+        </div>
+      {% endif %}
+
       <h1>{{ product.title }}</h1>
       {% if product.metafields.custom.short_description != blank %}
         <p class="product-info__short">{{ product.metafields.custom.short_description }}</p>
       {% endif %}
 
-      <p class="product-info__price">
-        <span data-product-price>{{ current_variant.price | money }}</span>
-        {% if current_variant.compare_at_price > current_variant.price %}
-          <s>{{ current_variant.compare_at_price | money }}</s>
-        {% endif %}
-      </p>
-
-      <form method="post" action="{{ routes.cart_add_url }}" data-add-to-cart-form data-loading-label="Ajout…">
+      <form method="post" action="{{ routes.cart_add_url }}" data-add-to-cart-form data-checkout-redirect="true" data-loading-label="Redirection…">
         {% if product.has_only_default_variant == false %}
           <fieldset data-variant-picker>
             <legend data-variant-legend>Couleur — {{ current_variant.title }}</legend>
@@ -66,7 +74,7 @@
                   data-variant-id="{{ variant.id }}"
                   style="background-color: {{ swatch_color }};"
                   aria-label="{{ variant.title }}"
-                  aria-pressed="{{ variant.id == current_variant.id }}"
+                  aria-pressed="{% if variant.id == current_variant.id %}true{% else %}false{% endif %}"
                 ></button>
               {% endfor %}
             </div>
@@ -76,7 +84,8 @@
                   {
                     "id": {{ variant.id | json }},
                     "title": {{ variant.title | json }},
-                    "price_formatted": {{ variant.price | money | json }}
+                    "price_formatted": {{ variant.price | money | json }},
+                    "price_cents": {{ variant.price | json }}
                   }{% unless forloop.last %},{% endunless %}
                 {% endfor %}
               ]
@@ -84,18 +93,56 @@
           </fieldset>
         {% endif %}
 
-        <div class="quantity-picker" data-quantity-picker>
-          <button type="button" data-quantity-decrease aria-label="Diminuer la quantité">−</button>
-          <input type="number" name="quantity" value="1" min="1" aria-live="polite" />
-          <button type="button" data-quantity-increase aria-label="Augmenter la quantité">+</button>
-        </div>
+        <fieldset
+          class="bundle-selector"
+          data-bundle-selector
+          data-currency="{{ cart.currency.iso_code }}"
+          data-base-price-cents="{{ current_variant.price }}"
+          data-discount-qty="{{ bundle_discount_qty }}"
+          data-discount-factor="{{ bundle_discount_factor }}"
+        >
+          <legend>Choisis ta formule</legend>
+
+          <button type="button" class="bundle-tier is-selected" data-bundle-tier data-qty="1">
+            <span class="bundle-tier__qty">Solo</span>
+            <span class="bundle-tier__sub">1 enceinte</span>
+            <span class="bundle-tier__price" data-bundle-tier-price>{{ current_variant.price | money }}</span>
+          </button>
+
+          <button type="button" class="bundle-tier" data-bundle-tier data-qty="2">
+            <span class="bundle-tier__qty">Duo</span>
+            <span class="bundle-tier__sub">2 enceintes</span>
+            <span class="bundle-tier__price" data-bundle-tier-price>{{ current_variant.price | times: 2 | money }}</span>
+          </button>
+
+          <button type="button" class="bundle-tier bundle-tier--best" data-bundle-tier data-qty="{{ bundle_discount_qty }}">
+            <span class="bundle-tier__badge">Le plus populaire · -{{ bundle_discount_pct }}%</span>
+            <span class="bundle-tier__qty">Trio</span>
+            <span class="bundle-tier__sub">{{ bundle_discount_qty }} enceintes</span>
+            <span class="bundle-tier__price" data-bundle-tier-price>
+              {{ current_variant.price | times: bundle_discount_qty | times: bundle_discount_factor | round | money }}
+            </span>
+          </button>
+        </fieldset>
+
+        <p class="bundle-summary">
+          <span data-bundle-per-unit></span> — total <strong data-bundle-total></strong>
+        </p>
 
         <input type="hidden" name="id" value="{{ current_variant.id }}" />
+        <input type="hidden" name="quantity" value="1" data-bundle-quantity-input />
         <button type="submit" class="btn btn-primary btn-lg" {% if current_variant.available == false %}disabled{% endif %}>
           {% if current_variant.available %}Acheter maintenant{% else %}Épuisé{% endif %}
         </button>
-        <p data-form-note aria-live="polite" style="min-height:1.25rem;margin-top:0.75rem;color:var(--color-muted);font-size:0.875rem;"></p>
+        <p data-form-note aria-live="polite" class="product-form-note"></p>
       </form>
+
+      <ul class="trust-badges">
+        <li>🚚 Livraison offerte dès 40€</li>
+        <li>🛡️ Garantie 2 ans</li>
+        <li>🔒 Paiement sécurisé</li>
+        <li>↩️ Retours sous 30 jours</li>
+      </ul>
 
       {% if product.description != blank %}
         <div class="product-info__description">{{ product.description }}</div>
@@ -118,6 +165,12 @@
 {% schema %}
 {
   "name": "Produit",
-  "settings": []
+  "settings": [
+    { "type": "text", "id": "badge_text", "label": "Badge sur l'image", "default": "Bluetooth 5.3 · IPX7" },
+    { "type": "text", "id": "rating_value", "label": "Note (ex: 4.8)", "default": "4.8" },
+    { "type": "text", "id": "rating_count", "label": "Nombre d'avis", "default": "1 200+" },
+    { "type": "range", "id": "bundle_discount_quantity", "label": "Quantité du pack le plus avantageux", "min": 2, "max": 5, "step": 1, "default": 3 },
+    { "type": "range", "id": "bundle_discount_percent", "label": "Réduction du pack (%)", "min": 5, "max": 30, "step": 1, "default": 15 }
+  ]
 }
 {% endschema %}
