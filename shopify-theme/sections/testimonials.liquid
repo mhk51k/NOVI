@@ -1,0 +1,52 @@
+<section id="avis" class="section">
+  <div class="container">
+    <div class="section__head">
+      <h2>{{ section.settings.heading }}</h2>
+      <p>{{ section.settings.subheading }}</p>
+    </div>
+    <div class="testimonials-grid">
+      {% for block in section.blocks %}
+        <figure class="testimonial-card" {{ block.shopify_attributes }}>
+          <div class="testimonial-card__stars" aria-hidden="true">
+            {% for i in (1..block.settings.stars) %}★{% endfor %}
+          </div>
+          <blockquote>"{{ block.settings.quote }}"</blockquote>
+          <figcaption><strong>{{ block.settings.name }}</strong> — {{ block.settings.profile }}</figcaption>
+        </figure>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Avis clients",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Titre", "default": "Ils utilisent NOVI au quotidien" },
+    { "type": "text", "id": "subheading", "label": "Sous-titre", "default": "Note moyenne 4.8/5 sur 1 200+ avis" }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Avis",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Nom" },
+        { "type": "text", "id": "profile", "label": "Profil" },
+        { "type": "textarea", "id": "quote", "label": "Citation" },
+        { "type": "range", "id": "stars", "label": "Étoiles", "min": 1, "max": 5, "step": 1, "default": 5 }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Avis clients",
+      "blocks": [
+        { "type": "testimonial", "settings": { "name": "Claire, 34 ans", "profile": "Active pressée", "quote": "Je la pose au bureau le matin, le son remplit toute la pièce.", "stars": 5 } },
+        { "type": "testimonial", "settings": { "name": "Marc, 58 ans", "profile": "Amateur de musique", "quote": "Appairage instantané, son puissant. Exactement ce qu'il me fallait.", "stars": 5 } },
+        { "type": "testimonial", "settings": { "name": "Léa, 21 ans", "profile": "Étudiante", "quote": "Tient dans mon sac de sport, autonomie au top.", "stars": 4 } },
+        { "type": "testimonial", "settings": { "name": "La famille Dubois", "profile": "Famille", "quote": "Elle passe de la cuisine au jardin sans jamais lâcher, même sous la pluie.", "stars": 5 } }
+      ]
+    }
+  ]
+}
+{% endschema %}

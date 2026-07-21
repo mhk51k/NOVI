@@ -1,0 +1,54 @@
+<section class="cart-page">
+  <h1>Ton panier</h1>
+
+  {% if cart.item_count == 0 %}
+    <div class="cart-empty">
+      <p>Ton panier est vide pour le moment.</p>
+      <a href="{{ routes.all_products_collection_url }}" class="btn btn-primary">Découvrir NOVI</a>
+    </div>
+  {% else %}
+    <ul style="list-style:none;margin:0;padding:0;">
+      {% for item in cart.items %}
+        <li class="cart-line">
+          <img src="{{ item.image | image_url: width: 160 }}" alt="{{ item.title }}" />
+          <div class="cart-line__info">
+            <p class="cart-line__title">{{ item.product.title }}</p>
+            {% if item.variant.title != 'Default Title' %}
+              <p class="cart-line__variant">{{ item.variant.title }}</p>
+            {% endif %}
+            <div class="quantity-picker">
+              <input
+                type="number"
+                min="0"
+                value="{{ item.quantity }}"
+                data-cart-quantity
+                data-line="{{ forloop.index }}"
+                aria-label="Quantité"
+              />
+            </div>
+          </div>
+          <div class="cart-line__end">
+            <span>{{ item.final_line_price | money }}</span>
+            <button type="button" class="cart-line__remove" data-cart-remove data-line="{{ forloop.index }}">Retirer</button>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <div class="cart-totals">
+      <span>Total</span>
+      <span>{{ cart.total_price | money }}</span>
+    </div>
+
+    <form action="{{ routes.cart_url }}" method="post">
+      <button type="submit" name="checkout" class="btn btn-primary">Passer commande</button>
+    </form>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Panier",
+  "settings": []
+}
+{% endschema %}

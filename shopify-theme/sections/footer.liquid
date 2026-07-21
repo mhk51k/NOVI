@@ -1,0 +1,55 @@
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <div>
+      <span class="novi-logo">N<span class="novi-logo-o">O</span>V<span class="novi-logo-i">I</span></span>
+      <p>{{ section.settings.tagline }}</p>
+    </div>
+
+    <div>
+      <h3>Navigation</h3>
+      <ul>
+        <li><a href="{{ routes.all_products_collection_url }}">Produit</a></li>
+        {% for link in linklists.footer.links %}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div>
+      <h3>Aide</h3>
+      <ul>
+        <li><a href="{{ routes.root_url }}#faq">FAQ</a></li>
+        <li><a href="{{ routes.cart_url }}">Panier</a></li>
+        <li><a href="mailto:{{ shop.email }}">{{ shop.email }}</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Suivez-nous</h3>
+      <div class="site-footer__social">
+        {% if settings.social_instagram != blank %}
+          <a href="{{ settings.social_instagram }}" aria-label="Instagram">IG</a>
+        {% endif %}
+        {% if settings.social_tiktok != blank %}
+          <a href="{{ settings.social_tiktok }}" aria-label="TikTok">TT</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="site-footer__bottom">© {{ 'now' | date: '%Y' }} NOVI. Tous droits réservés.</div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Texte sous le logo",
+      "default": "L'enceinte portable qui t'accompagne partout, pour un son puissant en toutes circonstances."
+    }
+  ]
+}
+{% endschema %}

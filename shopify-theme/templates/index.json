@@ -1,0 +1,102 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "badge": "Nouveau — précommande ouverte",
+        "heading": "Ton son, où que tu sois",
+        "subheading": "NOVI est l'enceinte portable Bluetooth au son puissant et à l'autonomie longue durée, à la maison comme en déplacement.",
+        "primary_label": "Acheter maintenant",
+        "secondary_label": "Comment ça marche",
+        "meta": "Livraison offerte dès 40€ · Garantie 2 ans · Paiement sécurisé"
+      }
+    },
+    "quick_buy": {
+      "type": "quick-buy",
+      "settings": {
+        "product_handle": "enceintenovi",
+        "button_label": "Payer maintenant"
+      }
+    },
+    "how_it_works": {
+      "type": "how-it-works",
+      "settings": {
+        "heading": "Comment ça marche",
+        "subheading": "Quatre étapes, trente secondes, zéro prise de tête."
+      },
+      "blocks": {
+        "step-1": { "type": "step", "settings": { "title": "Charge", "description": "Branche NOVI en USB-C, elle tient jusqu'à 20h." } },
+        "step-2": { "type": "step", "settings": { "title": "Appaire", "description": "Connecte-la en Bluetooth à ton téléphone en quelques secondes." } },
+        "step-3": { "type": "step", "settings": { "title": "Appuie", "description": "Un bouton, la musique démarre, la basse est déjà là." } },
+        "step-4": { "type": "step", "settings": { "title": "Profite", "description": "Emmène-la partout, résistante à l'eau et aux chocs." } }
+      },
+      "block_order": ["step-1", "step-2", "step-3", "step-4"]
+    },
+    "benefits": {
+      "type": "benefits",
+      "settings": {
+        "heading": "Fait pour ton quotidien",
+        "subheading": "Les détails qui rendent NOVI simple à adopter, tous les jours."
+      },
+      "blocks": {
+        "b1": { "type": "benefit", "settings": { "title": "Autonomie longue durée", "description": "Jusqu'à 20h d'écoute avant de recharger, en USB-C.", "highlight": true } },
+        "b2": { "type": "benefit", "settings": { "title": "Son puissant", "description": "Haut-parleur 20W avec basses renforcées par radiateur passif." } },
+        "b3": { "type": "benefit", "settings": { "title": "Résistante à l'eau", "description": "Étanchéité IPX7, elle suit à la plage comme sous la pluie." } },
+        "b4": { "type": "benefit", "settings": { "title": "Compacte et légère", "description": "540g, elle se glisse dans un sac comme dans une main." } },
+        "b5": { "type": "benefit", "settings": { "title": "Ultra simple", "description": "Appairage Bluetooth en quelques secondes, aucun réglage à comprendre." } },
+        "b6": { "type": "benefit", "settings": { "title": "Connectivité complète", "description": "Bluetooth 5.3 ou câble jack 3,5 mm, au choix." } }
+      },
+      "block_order": ["b1", "b2", "b3", "b4", "b5", "b6"]
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {
+        "heading": "Ils utilisent NOVI au quotidien",
+        "subheading": "Note moyenne 4.8/5 sur 1 200+ avis"
+      },
+      "blocks": {
+        "t1": { "type": "testimonial", "settings": { "name": "Claire, 34 ans", "profile": "Active pressée", "quote": "Je la pose au bureau le matin, le son remplit toute la pièce.", "stars": 5 } },
+        "t2": { "type": "testimonial", "settings": { "name": "Marc, 58 ans", "profile": "Amateur de musique", "quote": "Appairage instantané, son puissant. Exactement ce qu'il me fallait.", "stars": 5 } },
+        "t3": { "type": "testimonial", "settings": { "name": "Léa, 21 ans", "profile": "Étudiante", "quote": "Tient dans mon sac de sport, autonomie au top.", "stars": 4 } },
+        "t4": { "type": "testimonial", "settings": { "name": "La famille Dubois", "profile": "Famille", "quote": "Elle passe de la cuisine au jardin sans jamais lâcher, même sous la pluie.", "stars": 5 } }
+      },
+      "block_order": ["t1", "t2", "t3", "t4"]
+    },
+    "lifestyle": {
+      "type": "lifestyle-gallery",
+      "settings": {
+        "heading": "NOVI s'adapte à toi",
+        "subheading": "Une seule enceinte, tous les contextes."
+      },
+      "blocks": {
+        "s1": { "type": "scene", "settings": { "label": "Sport" } },
+        "s2": { "type": "scene", "settings": { "label": "Bureau" } },
+        "s3": { "type": "scene", "settings": { "label": "Plage" } },
+        "s4": { "type": "scene", "settings": { "label": "Maison" } }
+      },
+      "block_order": ["s1", "s2", "s3", "s4"]
+    },
+    "faq": {
+      "type": "faq",
+      "settings": { "heading": "Questions fréquentes" },
+      "blocks": {
+        "q1": { "type": "question", "settings": { "question": "Combien de temps dure la batterie ?", "answer": "Jusqu'à 20h d'écoute à volume modéré avec une charge complète (environ 2h30 en USB-C)." } },
+        "q2": { "type": "question", "settings": { "question": "L'enceinte résiste-t-elle à l'eau ?", "answer": "Oui, NOVI est certifiée IPX7 : elle résiste aux éclaboussures, à la pluie et à une immersion accidentelle brève." } },
+        "q3": { "type": "question", "settings": { "question": "Quelle est la garantie ?", "answer": "NOVI est garantie 2 ans pièces et main d'œuvre." } },
+        "q4": { "type": "question", "settings": { "question": "Sous combien de temps suis-je livré ?", "answer": "Entre 3 et 5 jours ouvrés en France métropolitaine." } },
+        "q5": { "type": "question", "settings": { "question": "Comment connecter l'enceinte ?", "answer": "Maintiens le bouton Bluetooth 3 secondes, puis sélectionne NOVI dans les paramètres Bluetooth de ton téléphone." } },
+        "q6": { "type": "question", "settings": { "question": "Puis-je l'utiliser avec un câble ?", "answer": "Oui, une prise jack 3,5 mm permet un branchement filaire avec le câble AUX inclus." } }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5", "q6"]
+    },
+    "newsletter": {
+      "type": "newsletter-cta",
+      "settings": {
+        "heading": "Prêt à emporter ton son partout ?",
+        "subheading": "Précommande ton NOVI dès aujourd'hui, ou reste informé de nos prochaines offres.",
+        "button_label": "Acheter maintenant"
+      }
+    }
+  },
+  "order": ["hero", "quick_buy", "how_it_works", "benefits", "testimonials", "lifestyle", "faq", "newsletter"]
+}

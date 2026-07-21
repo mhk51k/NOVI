@@ -1,0 +1,89 @@
+{% liquid
+  assign quickbuy_product = section.settings.product
+  if quickbuy_product == blank
+    assign quickbuy_product = all_products[section.settings.product_handle]
+  endif
+%}
+
+{% if quickbuy_product != blank %}
+  {% assign variant = quickbuy_product.selected_or_first_available_variant %}
+  {% assign front_image = quickbuy_product.images[1] | default: quickbuy_product.featured_image %}
+  {% assign angle_image = quickbuy_product.images[0] | default: quickbuy_product.featured_image %}
+
+  <section class="quickbuy">
+    <div class="container quickbuy__grid">
+      <div class="quickbuy__visual">
+        <div class="quickbuy__spin-wrap">
+          <div class="quickbuy__stage">
+            <img
+              src="{{ front_image | image_url: width: 800 }}"
+              alt="{{ front_image.alt | default: quickbuy_product.title }}"
+              class="quickbuy__img quickbuy__img--front"
+              width="480"
+              height="360"
+              loading="lazy"
+            />
+            <img
+              src="{{ angle_image | image_url: width: 800 }}"
+              alt=""
+              aria-hidden="true"
+              class="quickbuy__img quickbuy__img--angle"
+              width="480"
+              height="360"
+              loading="lazy"
+            />
+            <div class="quickbuy__sheen" aria-hidden="true"></div>
+          </div>
+          <div class="quickbuy__shadow" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <div class="quickbuy__info">
+        <p class="quickbuy__eyebrow">{{ quickbuy_product.title }}{% if variant.title != 'Default Title' %} — {{ variant.title }}{% endif %}</p>
+        <p class="quickbuy__price" data-product-price>{{ variant.price | money }}</p>
+
+        <form
+          method="post"
+          action="{{ routes.cart_add_url }}"
+          data-add-to-cart-form
+          data-checkout-redirect="true"
+          data-loading-label="Redirection…"
+        >
+          <input type="hidden" name="id" value="{{ variant.id }}" />
+          <input type="hidden" name="quantity" value="1" />
+          <input type="hidden" name="return_to" value="/checkout" />
+          <button type="submit" class="btn btn-primary btn-lg">
+            {{ section.settings.button_label }}
+          </button>
+        </form>
+        <p class="quickbuy__note" data-form-note aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Achat rapide",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Produit mis en avant"
+    },
+    {
+      "type": "text",
+      "id": "product_handle",
+      "label": "Handle de secours (si aucun produit choisi ci-dessus)",
+      "default": "enceintenovi"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Texte du bouton",
+      "default": "Payer maintenant"
+    }
+  ],
+  "presets": [{ "name": "Achat rapide" }]
+}
+{% endschema %}

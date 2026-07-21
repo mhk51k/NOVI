@@ -1,0 +1,19 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {}
+    },
+    "faq": {
+      "type": "faq",
+      "settings": { "heading": "Questions fréquentes" },
+      "blocks": {
+        "q1": { "type": "question", "settings": { "question": "Combien de temps dure la batterie ?", "answer": "Jusqu'à 20h d'écoute à volume modéré avec une charge complète (environ 2h30 en USB-C)." } },
+        "q2": { "type": "question", "settings": { "question": "L'enceinte résiste-t-elle à l'eau ?", "answer": "Oui, NOVI est certifiée IPX7 : elle résiste aux éclaboussures, à la pluie et à une immersion accidentelle brève." } },
+        "q3": { "type": "question", "settings": { "question": "Quelle est la garantie ?", "answer": "NOVI est garantie 2 ans pièces et main d'œuvre." } }
+      },
+      "block_order": ["q1", "q2", "q3"]
+    }
+  },
+  "order": ["main", "faq"]
+}

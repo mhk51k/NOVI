@@ -1,0 +1,9 @@
+<article class="basic-page">
+  <h1>{{ article.title }}</h1>
+  <p style="color:var(--color-muted);font-size:0.875rem;">{{ article.published_at | date: '%d %B %Y' }}</p>
+  <div class="basic-page__content">{{ article.content }}</div>
+</article>
+
+{% schema %}
+{ "name": "Article", "settings": [] }
+{% endschema %}

@@ -1,0 +1,50 @@
+<section class="section section--alt">
+  <div class="container">
+    <div class="section__head">
+      <h2>{{ section.settings.heading }}</h2>
+      <p>{{ section.settings.subheading }}</p>
+    </div>
+    <div class="benefits-grid">
+      {% for block in section.blocks %}
+        <div class="benefit-card{% if block.settings.highlight %} benefit-card--highlight{% endif %}" {{ block.shopify_attributes }}>
+          <h3>{{ block.settings.title }}</h3>
+          <p>{{ block.settings.description }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Avantages",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Titre", "default": "Fait pour ton quotidien" },
+    { "type": "text", "id": "subheading", "label": "Sous-titre", "default": "Les détails qui rendent NOVI simple à adopter, tous les jours." }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Avantage",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Titre" },
+        { "type": "textarea", "id": "description", "label": "Description" },
+        { "type": "checkbox", "id": "highlight", "label": "Mettre en avant", "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Avantages",
+      "blocks": [
+        { "type": "benefit", "settings": { "title": "Autonomie longue durée", "description": "Jusqu'à 20h d'écoute avant de recharger, en USB-C.", "highlight": true } },
+        { "type": "benefit", "settings": { "title": "Son puissant", "description": "Haut-parleur 20W avec basses renforcées par radiateur passif." } },
+        { "type": "benefit", "settings": { "title": "Résistante à l'eau", "description": "Étanchéité IPX7, elle suit à la plage comme sous la pluie." } },
+        { "type": "benefit", "settings": { "title": "Compacte et légère", "description": "540g, elle se glisse dans un sac comme dans une main." } },
+        { "type": "benefit", "settings": { "title": "Ultra simple", "description": "Appairage Bluetooth en quelques secondes, aucun réglage à comprendre." } },
+        { "type": "benefit", "settings": { "title": "Connectivité complète", "description": "Bluetooth 5.3 ou câble jack 3,5 mm, au choix." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,59 @@
+<header class="site-header">
+  <div class="container site-header__row">
+    <a href="{{ routes.root_url }}" aria-label="NOVI — retour à l'accueil">
+      <span class="novi-logo">N<span class="novi-logo-o">O</span>V<span class="novi-logo-i">I</span></span>
+    </a>
+
+    <nav class="site-nav" aria-label="Navigation principale">
+      <a href="{{ routes.all_products_collection_url }}">Produit</a>
+      <a href="{{ routes.root_url }}#comment-ca-marche">Comment ça marche</a>
+      <a href="{{ routes.root_url }}#avis">Avis</a>
+      {% for link in linklists.footer.links %}
+        {% if link.title == 'À propos' or link.title == 'A propos' %}
+          <a href="{{ link.url }}">À propos</a>
+        {% endif %}
+        {% if link.title == 'Contact' %}
+          <a href="{{ link.url }}">Contact</a>
+        {% endif %}
+      {% endfor %}
+    </nav>
+
+    <div class="site-header__actions">
+      <a href="{{ routes.all_products_collection_url }}" class="btn btn-primary header-buy-btn">Acheter</a>
+      <a
+        href="{{ routes.cart_url }}"
+        class="cart-count-bubble"
+        data-cart-count="{{ cart.item_count }}"
+        aria-label="Panier, {{ cart.item_count }} article(s)"
+      >
+        🛒
+      </a>
+      <button
+        type="button"
+        class="mobile-nav-toggle"
+        data-mobile-nav-toggle
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+        aria-label="Ouvrir le menu"
+      >
+        ☰
+      </button>
+    </div>
+  </div>
+
+  <nav id="mobile-nav" class="mobile-nav container" data-mobile-nav aria-label="Navigation mobile">
+    <a href="{{ routes.all_products_collection_url }}">Produit</a>
+    <a href="{{ routes.root_url }}#comment-ca-marche">Comment ça marche</a>
+    <a href="{{ routes.root_url }}#avis">Avis</a>
+    {% for link in linklists.footer.links %}
+      <a href="{{ link.url }}">{{ link.title }}</a>
+    {% endfor %}
+  </nav>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": []
+}
+{% endschema %}

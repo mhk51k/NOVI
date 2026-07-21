@@ -1,0 +1,123 @@
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+<section class="product">
+  <div class="container product__grid">
+    <div class="product-gallery" data-product-gallery>
+      <div class="product-gallery__main">
+        <img
+          data-gallery-main
+          src="{{ product.featured_image | image_url: width: 900 }}"
+          alt="{{ product.featured_image.alt | default: product.title }}"
+          width="600"
+          height="600"
+          loading="eager"
+        />
+      </div>
+      {% if product.images.size > 1 %}
+        <div class="product-gallery__thumbs">
+          {% for image in product.images %}
+            <button
+              type="button"
+              class="{% if forloop.first %}is-active{% endif %}"
+              data-gallery-thumb
+              data-full-src="{{ image | image_url: width: 900 }}"
+            >
+              <img src="{{ image | image_url: width: 200 }}" alt="{{ image.alt | default: product.title }}" width="200" height="200" loading="lazy" />
+            </button>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="product-info">
+      <h1>{{ product.title }}</h1>
+      {% if product.metafields.custom.short_description != blank %}
+        <p class="product-info__short">{{ product.metafields.custom.short_description }}</p>
+      {% endif %}
+
+      <p class="product-info__price">
+        <span data-product-price>{{ current_variant.price | money }}</span>
+        {% if current_variant.compare_at_price > current_variant.price %}
+          <s>{{ current_variant.compare_at_price | money }}</s>
+        {% endif %}
+      </p>
+
+      <form method="post" action="{{ routes.cart_add_url }}" data-add-to-cart-form data-loading-label="Ajout…">
+        {% if product.has_only_default_variant == false %}
+          <fieldset data-variant-picker>
+            <legend data-variant-legend>Couleur — {{ current_variant.title }}</legend>
+            <div class="variant-swatches">
+              {% for variant in product.variants %}
+                {% assign swatch_color = '#a1a1aa' %}
+                {% case variant.title | downcase %}
+                  {% when 'black' or 'noir onyx' or 'noir' %}
+                    {% assign swatch_color = '#0a0a0a' %}
+                  {% when 'blue' or 'bleu novi' or 'bleu' %}
+                    {% assign swatch_color = '#1e3a5f' %}
+                  {% when 'red' or 'rouge brique' or 'rouge' %}
+                    {% assign swatch_color = '#7f1d2b' %}
+                  {% when 'camouflage' %}
+                    {% assign swatch_color = '#5b6b45' %}
+                {% endcase %}
+                <button
+                  type="button"
+                  class="variant-swatch{% if variant.id == current_variant.id %} is-selected{% endif %}"
+                  data-variant-option
+                  data-variant-id="{{ variant.id }}"
+                  style="background-color: {{ swatch_color }};"
+                  aria-label="{{ variant.title }}"
+                  aria-pressed="{{ variant.id == current_variant.id }}"
+                ></button>
+              {% endfor %}
+            </div>
+            <script type="application/json" data-variant-json>
+              [
+                {% for variant in product.variants %}
+                  {
+                    "id": {{ variant.id | json }},
+                    "title": {{ variant.title | json }},
+                    "price_formatted": {{ variant.price | money | json }}
+                  }{% unless forloop.last %},{% endunless %}
+                {% endfor %}
+              ]
+            </script>
+          </fieldset>
+        {% endif %}
+
+        <div class="quantity-picker" data-quantity-picker>
+          <button type="button" data-quantity-decrease aria-label="Diminuer la quantité">−</button>
+          <input type="number" name="quantity" value="1" min="1" aria-live="polite" />
+          <button type="button" data-quantity-increase aria-label="Augmenter la quantité">+</button>
+        </div>
+
+        <input type="hidden" name="id" value="{{ current_variant.id }}" />
+        <button type="submit" class="btn btn-primary btn-lg" {% if current_variant.available == false %}disabled{% endif %}>
+          {% if current_variant.available %}Acheter maintenant{% else %}Épuisé{% endif %}
+        </button>
+        <p data-form-note aria-live="polite" style="min-height:1.25rem;margin-top:0.75rem;color:var(--color-muted);font-size:0.875rem;"></p>
+      </form>
+
+      {% if product.description != blank %}
+        <div class="product-info__description">{{ product.description }}</div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('[data-gallery-thumb]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-gallery-thumb]').forEach((b) => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      const main = document.querySelector('[data-gallery-main]');
+      if (main) main.src = btn.dataset.fullSrc;
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Produit",
+  "settings": []
+}
+{% endschema %}

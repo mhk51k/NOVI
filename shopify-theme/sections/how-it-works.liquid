@@ -1,0 +1,48 @@
+<section id="comment-ca-marche" class="section">
+  <div class="container">
+    <div class="section__head">
+      <h2>{{ section.settings.heading }}</h2>
+      <p>{{ section.settings.subheading }}</p>
+    </div>
+    <div class="steps-grid">
+      {% for block in section.blocks %}
+        <div class="steps-grid__item" {{ block.shopify_attributes }}>
+          <span class="steps-grid__number">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+          <h3>{{ block.settings.title }}</h3>
+          <p>{{ block.settings.description }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Comment ça marche",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Titre", "default": "Comment ça marche" },
+    { "type": "text", "id": "subheading", "label": "Sous-titre", "default": "Quatre étapes, trente secondes, zéro prise de tête." }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Étape",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Titre" },
+        { "type": "textarea", "id": "description", "label": "Description" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Comment ça marche",
+      "blocks": [
+        { "type": "step", "settings": { "title": "Charge", "description": "Branche NOVI en USB-C, elle tient jusqu'à 20h." } },
+        { "type": "step", "settings": { "title": "Appaire", "description": "Connecte-la en Bluetooth à ton téléphone en quelques secondes." } },
+        { "type": "step", "settings": { "title": "Appuie", "description": "Un bouton, la musique démarre, la basse est déjà là." } },
+        { "type": "step", "settings": { "title": "Profite", "description": "Emmène-la partout, résistante à l'eau et aux chocs." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

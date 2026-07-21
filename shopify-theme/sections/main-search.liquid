@@ -1,0 +1,37 @@
+<section class="section">
+  <div class="container">
+    <div class="section__head">
+      <h1 style="font-size:2rem;font-weight:700;margin:0 0 0.5rem;">Recherche</h1>
+      <form action="{{ routes.search_url }}" method="get" role="search" style="display:flex;gap:0.75rem;max-width:28rem;margin:1rem auto 0;">
+        <label for="SearchInput" class="visually-hidden">Rechercher</label>
+        <input
+          id="SearchInput"
+          type="search"
+          name="q"
+          value="{{ search.terms | escape }}"
+          placeholder="Rechercher un produit…"
+          style="flex:1;border:1px solid var(--color-border);border-radius:var(--radius-brand);padding:0.75rem 1rem;"
+        />
+        <button type="submit" class="btn btn-primary">OK</button>
+      </form>
+    </div>
+
+    {% if search.performed %}
+      {% if search.results.size == 0 %}
+        <p style="text-align:center;color:var(--color-muted);">Aucun résultat pour « {{ search.terms }} ».</p>
+      {% else %}
+        <div class="benefits-grid">
+          {% for item in search.results %}
+            <a href="{{ item.url }}" class="benefit-card" style="display:block;">
+              <h3>{{ item.title }}</h3>
+            </a>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Recherche", "settings": [] }
+{% endschema %}

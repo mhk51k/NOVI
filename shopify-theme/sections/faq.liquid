@@ -1,0 +1,45 @@
+<section id="faq" class="section">
+  <div class="container">
+    <div class="section__head">
+      <h2>{{ section.settings.heading }}</h2>
+    </div>
+    <div class="faq">
+      {% for block in section.blocks %}
+        <details class="faq-item" {{ block.shopify_attributes }}>
+          <summary>{{ block.settings.question }}</summary>
+          <p>{{ block.settings.answer }}</p>
+        </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ",
+  "settings": [{ "type": "text", "id": "heading", "label": "Titre", "default": "Questions fréquentes" }],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question" },
+        { "type": "textarea", "id": "answer", "label": "Réponse" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ",
+      "blocks": [
+        { "type": "question", "settings": { "question": "Combien de temps dure la batterie ?", "answer": "Jusqu'à 20h d'écoute à volume modéré avec une charge complète (environ 2h30 en USB-C)." } },
+        { "type": "question", "settings": { "question": "L'enceinte résiste-t-elle à l'eau ?", "answer": "Oui, NOVI est certifiée IPX7 : elle résiste aux éclaboussures, à la pluie et à une immersion accidentelle brève." } },
+        { "type": "question", "settings": { "question": "Quelle est la garantie ?", "answer": "NOVI est garantie 2 ans pièces et main d'œuvre." } },
+        { "type": "question", "settings": { "question": "Sous combien de temps suis-je livré ?", "answer": "Entre 3 et 5 jours ouvrés en France métropolitaine." } },
+        { "type": "question", "settings": { "question": "Comment connecter l'enceinte ?", "answer": "Maintiens le bouton Bluetooth 3 secondes, puis sélectionne NOVI dans les paramètres Bluetooth de ton téléphone." } },
+        { "type": "question", "settings": { "question": "Puis-je l'utiliser avec un câble ?", "answer": "Oui, une prise jack 3,5 mm permet un branchement filaire avec le câble AUX inclus." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

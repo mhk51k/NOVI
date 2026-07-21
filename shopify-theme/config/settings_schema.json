@@ -1,0 +1,48 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "NOVI",
+    "theme_version": "1.0.0",
+    "theme_author": "NOVI",
+    "theme_documentation_url": "https://github.com/mhk51k/NOVI",
+    "theme_support_url": "https://github.com/mhk51k/NOVI/issues"
+  },
+  {
+    "name": "Couleurs",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_brand",
+        "label": "Couleur de marque",
+        "default": "#2563eb"
+      },
+      {
+        "type": "color",
+        "id": "color_ink",
+        "label": "Texte principal",
+        "default": "#18181b"
+      },
+      {
+        "type": "color",
+        "id": "color_surface",
+        "label": "Fond",
+        "default": "#ffffff"
+      }
+    ]
+  },
+  {
+    "name": "Réseaux sociaux",
+    "settings": [
+      {
+        "type": "url",
+        "id": "social_instagram",
+        "label": "Instagram"
+      },
+      {
+        "type": "url",
+        "id": "social_tiktok",
+        "label": "TikTok"
+      }
+    ]
+  }
+]
